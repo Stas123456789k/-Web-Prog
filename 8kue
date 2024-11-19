@@ -1,0 +1,71 @@
+using System;  
+using System.Collections.Generic;  
+
+class Program  
+{  
+    static void Main()  
+    {  
+       //Задание 1 Возьмите массив и удалите каждый второй элемент из массива.
+       //Всегда сохраняйте первый элемент и начинайте удаление со следующего элемента.
+        string[] array = { "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape" };   
+        string[] result = RemoveEverySecondElement(array);  
+        Console.WriteLine(string.Join(", ", result)); // Apple, Cherry, Elderberry, Grape  
+    }  
+    static string[] RemoveEverySecondElement(string[] input)  
+    {  
+        List<string> output = new List<string>(); 
+        for (int i = 0; i < input.Length; i++)  
+        {  
+            if (i % 2 == 0)  
+            {  
+                output.Add(input[i]);  
+            }  
+        }
+        return output.ToArray();  
+        
+        //Задание 2 (Написать функцию, которая принимает три параметра:
+//capacity это количество людей, которое может вместить автобус, без учета водителя.
+//onBus количество человек в автобусе без учета водителя.
+//waiting количество людей, ожидающих посадки в автобус, без учета водителя.
+//Если места достаточно, верните 0, а если нет, верните количество пассажиров, которых он не может взять)
+        int capacity = 50; 
+        int onBus = 30;     
+        int waiting = 25;   
+        int result = CanBoard(capacity, onBus, waiting);  
+        if(result == 0)  
+        {  
+            Console.WriteLine("Все пассажиры могут сесть в автобус.");  
+        }  
+        else  
+        {  
+            Console.WriteLine($"Не хватает мест для {result} пассажиров.");  
+        }  
+    }  
+    static int CanBoard(int capacity, int onBus, int waiting)  
+    {  
+        int availableSpace = capacity - onBus;  
+        if (availableSpace >= waiting)  
+        {  
+            return 0;   
+        }  
+        else  
+        {  
+            return waiting - availableSpace;  
+        }  
+        //Задание 3 (Дополните функцию квадратной суммы так, 
+        //чтобы она возводила в квадрат каждое переданное ей число, а затем суммировала результаты. Пример  [2,2,2] и должно получиться число 12  )
+          int[] numbers = { 2, 2, 2 };  
+        int result = SquareSum(numbers);  
+        Console.WriteLine(result);   
+    }  
+
+    static int SquareSum(int[] numbers)  
+    {  
+        int sum = 0;  
+        foreach (int number in numbers)  
+        {  
+            sum += number * number; // Возводим в квадрат и суммируем  
+        }  
+        return sum;  
+    }  
+}
