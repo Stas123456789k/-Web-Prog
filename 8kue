@@ -1,70 +1,62 @@
 using System;  
 using System.Collections.Generic;  
 
-class Program  
+public static class Kata  
 {  
-    static void Main()  
+    public static object[] RemoveEveryOther(object[] input)  
     {  
-       //Задание 1 Возьмите массив и удалите каждый второй элемент из массива.
-       //Всегда сохраняйте первый элемент и начинайте удаление со следующего элемента.
-        string[] array = { "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape" };   
-        string[] result = RemoveEverySecondElement(array);  
-        Console.WriteLine(string.Join(", ", result)); // Apple, Cherry, Elderberry, Grape  
-    }  
-    static string[] RemoveEverySecondElement(string[] input)  
-    {  
-        List<string> output = new List<string>(); 
+//Задание 1 (Возьмите массив и удалите каждый второй элемент из массива. 
+//Всегда сохраняйте первый элемент и начинайте удаление со следующего элемента.)
+        List<object> result = new List<object>();  
         for (int i = 0; i < input.Length; i++)  
         {  
             if (i % 2 == 0)  
             {  
-                output.Add(input[i]);  
+                result.Add(input[i]);  
             }  
-        }
-        return output.ToArray();  
-        
+        } 
+        return result.ToArray();  
+    }  
+}
         //Задание 2 (Написать функцию, которая принимает три параметра:
 //capacity это количество людей, которое может вместить автобус, без учета водителя.
 //onBus количество человек в автобусе без учета водителя.
 //waiting количество людей, ожидающих посадки в автобус, без учета водителя.
 //Если места достаточно, верните 0, а если нет, верните количество пассажиров, которых он не может взять)
-        int capacity = 50; 
-        int onBus = 30;     
-        int waiting = 25;   
-        int result = CanBoard(capacity, onBus, waiting);  
-        if(result == 0)  
-        {  
-            Console.WriteLine("Все пассажиры могут сесть в автобус.");  
-        }  
-        else  
-        {  
-            Console.WriteLine($"Не хватает мест для {result} пассажиров.");  
-        }  
-    }  
-    static int CanBoard(int capacity, int onBus, int waiting)  
+       using System;  
+public static class Kata  
+{  
+    public static int Enough(int cap, int on, int wait)  
     {  
-        int availableSpace = capacity - onBus;  
-        if (availableSpace >= waiting)  
+        int availableSpaces = cap - on;  
+        if (availableSpaces >= wait)  
         {  
-            return 0;   
-        }  
-        else  
-        {  
-            return waiting - availableSpace;  
-        }  
-        //Задание 3 (Дополните функцию квадратной суммы так, 
-        //чтобы она возводила в квадрат каждое переданное ей число, а затем суммировала результаты. Пример  [2,2,2] и должно получиться число 12  )
-          int[] numbers = { 2, 2, 2 };  
-        int result = SquareSum(numbers);  
-        Console.WriteLine(result);   
+            return 0;  
+        } 
+        return wait - availableSpaces;  
     }  
-
-    static int SquareSum(int[] numbers)  
+}  
+public class Program  
+{  
+    public static void Main()  
+    {   
+        Console.WriteLine(Kata.Enough(10, 5, 5));  
+        Console.WriteLine(Kata.Enough(10, 5, 6));    
+        Console.WriteLine(Kata.Enough(100, 60, 50));  
+        Console.WriteLine(Kata.Enough(200, 200, 1));  
+    }  
+}
+        //Задание 3 (Дополните функцию квадратной суммы так, чтобы она возводила в квадрат каждое
+//переданное ей число, а затем суммировала результаты. Пример  [2,2,2] и должно получиться число 12  )
+        using System;  
+public static class Kata  
+{  
+    public static int SquareSum(int[] numbers)  
     {  
         int sum = 0;  
         foreach (int number in numbers)  
         {  
-            sum += number * number; // Возводим в квадрат и суммируем  
+            sum += number * number; 
         }  
         return sum;  
     }  
